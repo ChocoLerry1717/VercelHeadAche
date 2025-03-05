@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
-from vercel_wsgi import handle_request  # This adapts Flask for Vercel
 
 app = Flask(__name__)
 
 # Configure Gemini API
-GENAI_API_KEY = "AIzaSyAPQMyULAP3iY-tZmWz9G8SwHXm2i8ydro"
+GENAI_API_KEY = "YOUR_GEMINI_API_KEY"
 genai.configure(api_key=GENAI_API_KEY)
 
 @app.route("/chat", methods=["GET"])
@@ -22,6 +21,6 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Vercel expects a request handler
-def handler(request, context=None):
-    return handle_request(app, request)
+# Vercel requires a variable named `app`
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
