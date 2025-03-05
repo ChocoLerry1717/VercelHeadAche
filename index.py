@@ -4,7 +4,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 
 # Configure Gemini API
-GENAI_API_KEY = "YOUR_GEMINI_API_KEY"
+GENAI_API_KEY = "AIzaSyAPQMyULAP3iY-tZmWz9G8SwHXm2i8ydro"
 genai.configure(api_key=GENAI_API_KEY)
 
 @app.route("/chat", methods=["GET"])
